@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1095622271172",
+    "project_id": "superchat-mad22",
+    "storage_bucket": "superchat-mad22.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1095622271172:android:86a803e32a654bd035a991",
+        "android_client_info": {
+          "package_name": "com.mymobile.superchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1095622271172-8e96h23cat8tk8jlqf7ktevv01o46uq6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdK8hVZX0uXpvHOlgEbGaktavp3GKRxN4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1095622271172-8e96h23cat8tk8jlqf7ktevv01o46uq6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
