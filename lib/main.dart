@@ -8,6 +8,7 @@ Future<void> main() async {
   //Always needed for firebase
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  // ignore: no_leading_underscores_for_local_identifiers
   FirestoreService _ = FirestoreService();
   runApp(const SocialApp());
 }

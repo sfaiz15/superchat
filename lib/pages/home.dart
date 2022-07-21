@@ -6,6 +6,7 @@ import 'package:superchat/pages/profile.dart';
 //import 'package:superchat/services/firestore_service.dart';
 import 'package:superchat/widgets/loading.dart';
 import 'package:flutter/material.dart' hide Action;
+// ignore: library_prefixes
 import 'package:firebase_auth/firebase_auth.dart' as fbAuth;
 
 class HomePage extends StatefulWidget {
@@ -29,7 +30,7 @@ class _HomeState extends State<HomePage> {
             IconButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ConversationsPage()));
+                      builder: (context) => const ConversationsPage()));
                 },
                 icon: const Icon(Icons.message)),
             IconButton(onPressed: () {}, icon: const Icon(Icons.settings))

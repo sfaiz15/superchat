@@ -130,6 +130,7 @@ class FirestoreService {
       QuerySnapshot<Map<String, dynamic>> snapshot) {
     List<Conversation> conversations = [];
     for (var doc in snapshot.docs) {
+      // ignore: avoid_print
       print(doc.data());
       Conversation convo = Conversation.fromJson(doc.id, doc.data());
       _conversations[convo.id] = convo;
