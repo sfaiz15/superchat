@@ -30,9 +30,7 @@ class _CreateState extends State<CreateConversationsPage> {
             var added = recipients.contains(userList[index].id);
             return ListTile(
               title: Text(userList[index].name),
-              trailing: recipients.contains(
-                userList[index].id,
-              )
+              trailing: added
                   ? const Icon(
                       Icons.verified,
                       color: Colors.green,
@@ -54,6 +52,6 @@ class _CreateState extends State<CreateConversationsPage> {
 
   void createConvo() async {
     FirestoreService fs = FirestoreService();
-    fs.addConversations(recipients);
+    fs.addConversation(recipients);
   }
 }

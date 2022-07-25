@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-const Color primaryColor = Color.fromARGB(255, 20, 68, 74);
-const Color primaryDarkColor = Color.fromARGB(255, 20, 68, 74);
-const Color primaryLiteColor = Color.fromARGB(255, 20, 68, 74);
+const Color primaryColor = Color.fromARGB(255, 28, 35, 120);
+const Color primaryDarkColor = Color.fromARGB(255, 20, 25, 74);
+const Color primaryLiteColor = Color.fromARGB(255, 71, 80, 174);
 
 const double standardText = 18.0;
 const double largeText = 18.0;

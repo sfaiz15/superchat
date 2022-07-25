@@ -3,10 +3,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class Message {
   final String id;
   final String content; // The typed message or the url of the image
-  final int type; //The type of messahe this is
+  final int
+      type; // The type of message this is 0:Post 1:UploadedImage 2:Sticker
   final Timestamp createdAt; // Timestamp of message
-  final String fromId; //user id of the creator
-  final String convoId; //user id of the creator
+  final String fromId; // User id of the creator
+  final String convoId; // User id of the creator
 
   Message(
       {required this.id,
@@ -32,7 +33,7 @@ class Message {
       "type": type,
       "createdAt": createdAt,
       "fromId": fromId,
-      "convversationId": convoId
+      "conversationId": convoId
     };
   }
 }

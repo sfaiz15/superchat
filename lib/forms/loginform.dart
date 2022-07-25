@@ -1,12 +1,17 @@
 import 'package:superchat/pages/home.dart';
 import 'package:superchat/style/style.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 
 import '../widgets/loading.dart';
 
 class LoginForm extends StatefulWidget {
-  const LoginForm({Key? key}) : super(key: key);
+  const LoginForm({
+    required this.onTap,
+    Key? key,
+  }) : super(key: key);
+  final Function onTap;
 
   @override
   State<LoginForm> createState() => _LoginFormState();
@@ -68,7 +73,7 @@ class _LoginFormState extends State<LoginForm> {
                     onPressed: () {
                       forgot();
                     },
-                    child: const Text("Forgot Password"))
+                    child: const Text("FORGOT PASSWORD"))
               ],
             ),
           );
@@ -91,6 +96,7 @@ class _LoginFormState extends State<LoginForm> {
             loginResponse.user!.sendEmailVerification();
           }
           loading = false;
+          widget.onTap();
         });
       } catch (e) {
         setState(() {

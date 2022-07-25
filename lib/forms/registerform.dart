@@ -1,10 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:superchat/forms/loginform.dart';
 import 'package:superchat/style/style.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class RegisterForm extends StatefulWidget {
-  const RegisterForm({Key? key}) : super(key: key);
+  const RegisterForm({
+    required this.onTap,
+    Key? key,
+  }) : super(key: key);
+  final Function onTap;
 
   @override
   State<RegisterForm> createState() => _RegisterFormState();
@@ -86,7 +91,11 @@ class _RegisterFormState extends State<RegisterForm> {
                   register();
                 });
               },
-              child: const Text("REGISTER"))
+              child: const Text("REGISTER")),
+          OutlinedButton(
+              onPressed: showLogin,
+              child: Text('LOGIN',
+                  style: TextStyle(color: Colors.purple, fontSize: 15)))
         ],
       ),
     );
@@ -109,6 +118,7 @@ class _RegisterFormState extends State<RegisterForm> {
         registerResponse.user!.sendEmailVerification();
         setState(() {
           loading = false;
+          widget.onTap();
         });
       } catch (e) {
         setState(() {
@@ -117,5 +127,15 @@ class _RegisterFormState extends State<RegisterForm> {
         });
       }
     }
+  }
+
+  void showLogin() {
+    showModalBottomSheet<void>(
+        context: context,
+        builder: (BuildContext context) {
+          return Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: LoginForm(onTap: widget.onTap));
+        });
   }
 }

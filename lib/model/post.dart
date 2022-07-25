@@ -1,11 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+/*
+POST
+
+id(PRIMARY KEY )---   content   --- type    --- createdAt -- creator
+STRING                STRING        INTEGER     DateTime    STRING
+
+
+*/
 class Post {
   final String id;
   final String content; // The typed message or the url of the image
-  int type; //The type of messahe this is
+  int type; // The type of message this is 0:Post 1:UploadedImage 2:Sticker
   final Timestamp createdAt; // Timestamp of message
-  final String creator; //user id of the creator
+  final String creator; // User id of the creator
 
   Post(
       {required this.id,

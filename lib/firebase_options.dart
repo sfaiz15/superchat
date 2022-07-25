@@ -69,7 +69,19 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1095622271172',
     projectId: 'superchat-mad22',
     storageBucket: 'superchat-mad22.appspot.com',
-    iosClientId: '1095622271172-o0hnvacv8v97vrg6o6on5pojggmel85g.apps.googleusercontent.com',
+    iosClientId:
+        '1095622271172-o0hnvacv8v97vrg6o6on5pojggmel85g.apps.googleusercontent.com',
+    iosBundleId: 'com.mymobile.superchat',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyDHsoU4GAE0JiWznKrpqU3VwGABeZIxLEM',
+    appId: '1:1095622271172:ios:ce3632f473f67c6a35a991',
+    messagingSenderId: '1095622271172',
+    projectId: 'superchat-mad22',
+    storageBucket: 'superchat-mad22.appspot.com',
+    iosClientId:
+        '1095622271172-o0hnvacv8v97vrg6o6on5pojggmel85g.apps.googleusercontent.com',
     iosBundleId: 'com.mymobile.superchat',
   );
 }

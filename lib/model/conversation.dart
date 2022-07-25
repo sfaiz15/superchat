@@ -4,7 +4,7 @@ class Conversation {
   final String id;
   final List<String> users; // The typed message or the url of the image
   final Timestamp createdAt; // Timestamp of message
-  final String? lastMessage; //user id of the creator
+  final String? lastMessage; // User id of the creator
   Conversation(
       {required this.id,
       required this.users,
@@ -24,7 +24,7 @@ class Conversation {
     return Conversation(
         id: id,
         users: users,
-        createdAt: data["create_at"],
+        createdAt: data[_createdKey],
         lastMessage: data[_lastMessageKey]);
   }
 
@@ -32,7 +32,7 @@ class Conversation {
     return {
       _usersKey: users,
       _createdKey: createdAt,
-      _lastMessageKey: lastMessage,
+      _lastMessageKey: lastMessage
     };
   }
 }

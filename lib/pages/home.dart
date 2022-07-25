@@ -1,13 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:superchat/forms/postform.dart';
 import 'package:superchat/model/post.dart';
-import 'package:superchat/model/user.dart';
 import 'package:superchat/pages/conversations.dart';
+import 'package:superchat/pages/driver.dart';
 import 'package:superchat/pages/profile.dart';
-//import 'package:superchat/services/firestore_service.dart';
+import 'package:superchat/services/firestore_service.dart';
 import 'package:superchat/widgets/loading.dart';
-import 'package:flutter/material.dart' hide Action;
-// ignore: library_prefixes
-import 'package:firebase_auth/firebase_auth.dart' as fbAuth;
+import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -17,15 +16,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomeState extends State<HomePage> {
-  // ignore: unused_field
-  final fbAuth.FirebaseAuth _auth = fbAuth.FirebaseAuth.instance;
   final FirestoreService _fs = FirestoreService();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Social Stream"),
+          title: const Text("Welcome To My World"),
           actions: [
             IconButton(
                 onPressed: () {
@@ -33,16 +30,16 @@ class _HomeState extends State<HomePage> {
                       builder: (context) => const ConversationsPage()));
                 },
                 icon: const Icon(Icons.message)),
-            IconButton(onPressed: () {}, icon: const Icon(Icons.settings))
+            IconButton(
+                onPressed: _signout, icon: const Icon(Icons.logout_rounded))
           ],
         ),
-        resizeToAvoidBottomInset: true,
         floatingActionButton: FloatingActionButton(
           onPressed: _showPostFeild,
           child: const Icon(Icons.post_add),
         ),
         body: StreamBuilder<List<Post>>(
-          stream: _fs.post,
+          stream: _fs.posts,
           builder: (BuildContext context, AsyncSnapshot<List<Post>> snapshots) {
             if (snapshots.hasError) {
               return Center(child: Text(snapshots.error.toString()));
@@ -50,13 +47,13 @@ class _HomeState extends State<HomePage> {
               var posts = snapshots.data!;
               var filterpost = [];
               for (var element in posts) {
-                if (element.creator == "Some Id") {
+                if (element.creator == "SomeId") {
                   filterpost.add(element);
                 }
               }
 
               return posts.isEmpty
-                  ? const Center(child: Text("No post"))
+                  ? const Center(child: Text("There are no posts"))
                   : ListView.builder(
                       itemCount: posts.length,
                       itemBuilder: (BuildContext context, int index) =>
@@ -71,8 +68,11 @@ class _HomeState extends State<HomePage> {
                                                         .userMap[
                                                     posts[index].creator]!)));
                                   },
-                                  child: Text(FirestoreService
-                                      .userMap[posts[index].creator]!.name)),
+                                  child: Text(FirestoreService.userMap
+                                          .containsKey(posts[index].creator)
+                                      ? FirestoreService
+                                          .userMap[posts[index].creator]!.name
+                                      : "Error")),
                               subtitle: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -99,7 +99,12 @@ class _HomeState extends State<HomePage> {
           return const PostForm();
         });
   }
-}
 
-// ignore: non_constant_identifier_names
-Profile({required User observedUser}) {}
+  void _signout() async {
+    await FirebaseAuth.instance.signOut();
+    User? user = FirebaseAuth.instance.currentUser;
+    runApp(new MaterialApp(
+      home: new Driver(),
+    ));
+  }
+}

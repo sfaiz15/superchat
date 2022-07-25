@@ -1,3 +1,4 @@
+import 'package:superchat/model/post.dart';
 import 'package:superchat/services/firestore_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -10,33 +11,31 @@ class PostForm extends StatefulWidget {
 }
 
 class _PostFormState extends State<PostForm> {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  FirebaseAuth _auth = FirebaseAuth.instance;
   final FirestoreService _fs = FirestoreService();
   final TextEditingController _content = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        maintainBottomViewPadding: true,
-        child: Padding(
-          padding: const EdgeInsets.all(30.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              TextField(
-                controller: _content,
-                minLines: 5,
-                maxLines: 5,
-              ),
-              OutlinedButton(
-                  onPressed: _submitPost, child: const Text("Submit Post")),
-              const SizedBox(
-                height: 200,
-              )
-            ],
-          ),
-        ));
+      maintainBottomViewPadding: true,
+      child: Padding(
+        padding: const EdgeInsets.all(30.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            TextField(
+              controller: _content,
+              minLines: 5,
+              maxLines: 5,
+            ),
+            OutlinedButton(
+                onPressed: _submitPost, child: const Text("Submit Post"))
+          ],
+        ),
+      ),
+    );
   }
 
   void _submitPost() {

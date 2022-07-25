@@ -3,7 +3,7 @@ import 'package:superchat/model/message.dart';
 import 'package:superchat/services/firestore_service.dart';
 import 'package:superchat/style/style.dart';
 import 'package:flutter/material.dart';
-//import 'package:flutter_rating_bar/flutter_rating_bar';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class ChatPage extends StatelessWidget {
   ChatPage({Key? key, required this.conversation, required this.name})
@@ -16,7 +16,35 @@ class ChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(name)),
+      drawer: Drawer(
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+            RatingBar.builder(
+              itemCount: 5,
+              allowHalfRating: true,
+              initialRating: 4.5,
+              onRatingUpdate: (value) {},
+              itemBuilder: (BuildContext context, int index) {
+                return const Icon(
+                  Icons.star,
+                  color: Colors.amber,
+                );
+              },
+            ),
+          ])),
+      appBar: AppBar(
+        title: Text(name),
+        actions: [
+          TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text(
+                "CLOSE",
+                style: TextStyle(color: Colors.white),
+              ))
+        ],
+      ),
       body: SafeArea(
           child: Column(
         children: [_messagingArea(context), _inputArea(context)],
@@ -27,7 +55,7 @@ class ChatPage extends StatelessWidget {
   Widget _messagingArea(BuildContext context) {
     return Expanded(
         child: Container(
-      color: Colors.pink,
+      color: Color.fromARGB(255, 82, 50, 89),
       width: screenWidth(context),
       child: StreamBuilder<List<Message>>(
         stream: _fs.messages,
@@ -44,7 +72,9 @@ class ChatPage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   bool me = messages[index].fromId == _fs.getUserId();
                   return Container(
-                      color: me ? Colors.amber : Colors.deepPurple,
+                      color: me
+                          ? Color.fromARGB(255, 82, 50, 89)
+                          : Color.fromARGB(255, 194, 151, 207),
                       child: Padding(
                           padding: const EdgeInsets.all(15.0),
                           child: Text(
@@ -64,17 +94,12 @@ class ChatPage extends StatelessWidget {
 
   Widget _inputArea(BuildContext context) {
     return Container(
-      color: Colors.greenAccent,
+      color: Color.fromARGB(255, 210, 196, 227),
       width: screenWidth(context),
-      height: 100,
       child: Row(children: [
         const SizedBox(width: 20),
         Expanded(
-            child: TextField(
-          controller: _message,
-          minLines: 1,
-          maxLines: 3,
-        )),
+            child: TextField(controller: _message, minLines: 1, maxLines: 3)),
         IconButton(onPressed: sendMessage, icon: const Icon(Icons.send))
       ]),
     );

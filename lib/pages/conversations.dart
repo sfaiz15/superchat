@@ -1,7 +1,7 @@
 import 'package:superchat/model/conversation.dart';
 import 'package:superchat/pages/chat.dart';
 import 'package:superchat/pages/create_conversation.dart';
-import 'package:superchat/pages/profile.dart';
+import 'package:superchat/services/firestore_service.dart';
 import 'package:flutter/material.dart';
 
 class ConversationsPage extends StatefulWidget {
@@ -16,7 +16,7 @@ class _ConversationsState extends State<ConversationsPage> {
   @override
   void initState() {
     super.initState();
-    _fs.setUserConversations();
+    _fs.setUserConvoserations();
   }
 
   @override
@@ -51,7 +51,7 @@ class _ConversationsState extends State<ConversationsPage> {
                         );
                       });
             } else {
-              return const Center(child: Text("Are no Conversations"));
+              return const Center(child: Text("Are No Conversations"));
             }
           }),
     );
@@ -65,7 +65,8 @@ class _ConversationsState extends State<ConversationsPage> {
         if (convoname.isEmpty) {
           convoname = FirestoreService.userMap[user]!.name.toUpperCase();
         } else {
-          convoname += ",${FirestoreService.userMap[user]!.name.toUpperCase()}";
+          convoname +=
+              ", ${FirestoreService.userMap[user]!.name.toUpperCase()}";
         }
       }
     }
