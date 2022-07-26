@@ -31,7 +31,7 @@ class Authentication extends StatelessWidget {
   static void _sucessfulSignUp(BuildContext context) {
     Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (BuildContext context) => HomePage()),
+      MaterialPageRoute(builder: (BuildContext context) => const HomePage()),
       ModalRoute.withName('/'),
     );
   }

@@ -94,7 +94,7 @@ class _RegisterFormState extends State<RegisterForm> {
               child: const Text("REGISTER")),
           OutlinedButton(
               onPressed: showLogin,
-              child: Text('LOGIN',
+              child: const Text('LOGIN',
                   style: TextStyle(color: Colors.purple, fontSize: 15)))
         ],
       ),

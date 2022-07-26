@@ -55,7 +55,7 @@ class ChatPage extends StatelessWidget {
   Widget _messagingArea(BuildContext context) {
     return Expanded(
         child: Container(
-      color: Color.fromARGB(255, 82, 50, 89),
+      color: const Color.fromARGB(255, 82, 50, 89),
       width: screenWidth(context),
       child: StreamBuilder<List<Message>>(
         stream: _fs.messages,
@@ -73,8 +73,8 @@ class ChatPage extends StatelessWidget {
                   bool me = messages[index].fromId == _fs.getUserId();
                   return Container(
                       color: me
-                          ? Color.fromARGB(255, 82, 50, 89)
-                          : Color.fromARGB(255, 194, 151, 207),
+                          ? const Color.fromARGB(255, 82, 50, 89)
+                          : const Color.fromARGB(255, 194, 151, 207),
                       child: Padding(
                           padding: const EdgeInsets.all(15.0),
                           child: Text(
@@ -94,7 +94,7 @@ class ChatPage extends StatelessWidget {
 
   Widget _inputArea(BuildContext context) {
     return Container(
-      color: Color.fromARGB(255, 210, 196, 227),
+      color: const Color.fromARGB(255, 210, 196, 227),
       width: screenWidth(context),
       child: Row(children: [
         const SizedBox(width: 20),

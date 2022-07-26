@@ -11,7 +11,7 @@ class PostForm extends StatefulWidget {
 }
 
 class _PostFormState extends State<PostForm> {
-  FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirestoreService _fs = FirestoreService();
   final TextEditingController _content = TextEditingController();
   @override

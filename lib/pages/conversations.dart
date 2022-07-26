@@ -31,7 +31,7 @@ class _ConversationsState extends State<ConversationsPage> {
                     builder: (context) => const CreateConversationsPage()));
               },
               icon: const Icon(Icons.add)),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.settings))
+          IconButton(onPressed: () {}, icon: const Icon(Icons.search))
         ],
       ),
       body: StreamBuilder<List<Conversation>>(
