@@ -1,7 +1,7 @@
 import 'package:superchat/model/user.dart';
+import 'package:superchat/pages/search_feed.dart';
 import 'package:superchat/services/firestore_service.dart';
 import 'package:flutter/material.dart';
-import 'package:firestore_search/firestore_search.dart';
 
 class CreateConversationsPage extends StatefulWidget {
   const CreateConversationsPage({Key? key}) : super(key: key);
@@ -21,7 +21,10 @@ class _CreateState extends State<CreateConversationsPage> {
         actions: recipients.isEmpty
             ? []
             : [
-                IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+                IconButton(
+                    onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => const SearchFeed())),
+                    icon: const Icon(Icons.search)),
                 IconButton(
                     onPressed: createConvo, icon: const Icon(Icons.check))
               ],

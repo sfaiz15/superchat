@@ -1,6 +1,7 @@
 import 'package:superchat/model/conversation.dart';
 import 'package:superchat/pages/chat.dart';
 import 'package:superchat/pages/create_conversation.dart';
+import 'package:superchat/pages/search_feed.dart';
 import 'package:superchat/services/firestore_service.dart';
 import 'package:flutter/material.dart';
 
@@ -31,7 +32,10 @@ class _ConversationsState extends State<ConversationsPage> {
                     builder: (context) => const CreateConversationsPage()));
               },
               icon: const Icon(Icons.add)),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.search))
+          IconButton(
+              onPressed: () => Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (_) => const SearchFeed())),
+              icon: const Icon(Icons.search))
         ],
       ),
       body: StreamBuilder<List<Conversation>>(
